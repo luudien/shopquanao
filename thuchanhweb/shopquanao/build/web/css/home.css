@@ -1,0 +1,249 @@
+/* ===========================================
+   STYLE.CSS - Atino Clone (Pro Version)
+   Author: ChatGPT
+   =========================================== */
+
+/* Import font đẹp */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+:root {
+  --main-color: #c01920;
+  --dark-color: #111;
+  --gray-color: #555;
+  --light-gray: #f8f8f8;
+}
+
+/* === RESET & BASE === */
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--dark-color);
+  background-color: #fff;
+  font-size: 15px;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
+a {
+  color: var(--dark-color);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--main-color);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* === HEADER / TOPBAR === */
+.topbar {
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  padding: 8px 0;
+}
+
+.topbar .brand-logo {
+  height: 48px;
+}
+
+.contact-phone {
+  font-weight: 600;
+  color: var(--main-color);
+  font-size: 16px;
+}
+
+/* === NAVBAR === */
+.category-menu {
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.navbar-nav .nav-link {
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--dark-color) !important;
+  padding: 12px 20px !important;
+  transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: var(--main-color) !important;
+}
+
+/* === HERO SLIDER === */
+#heroCarousel img {
+  border-radius: 10px;
+  object-fit: cover;
+  height: 400px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+}
+
+/* === SECTION TITLES === */
+section h3 {
+  font-weight: 600;
+  font-size: 22px;
+  text-transform: uppercase;
+  position: relative;
+}
+
+section h3::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--main-color);
+  margin-top: 6px;
+}
+
+/* === PRODUCT CARD === */
+.product-card {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #fff;
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.product-card img {
+  height: 280px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.product-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Hover overlay */
+.product-card .quick-view {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(192, 25, 32, 0.9);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 14px;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.product-card:hover .quick-view {
+  opacity: 1;
+}
+
+.product-card .card-body {
+  text-align: center;
+  padding: 14px;
+}
+
+.product-card h6 {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  height: 42px;
+  overflow: hidden;
+}
+
+.product-card p {
+  color: var(--main-color);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* === BUTTONS === */
+.btn-primary {
+  background: var(--main-color);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #a6151b;
+}
+
+.btn-outline-primary {
+  color: var(--main-color);
+  border-color: var(--main-color);
+}
+
+.btn-outline-primary:hover {
+  background: var(--main-color);
+  color: #fff;
+}
+
+/* === FOOTER === */
+.footer {
+  background: var(--light-gray);
+  border-top: 1px solid #eee;
+  padding: 40px 0 20px;
+  color: var(--gray-color);
+  font-size: 14px;
+}
+
+.footer h6 {
+  font-weight: 600;
+  color: var(--dark-color);
+  margin-bottom: 12px;
+}
+
+.footer a {
+  color: var(--gray-color);
+  transition: all 0.3s ease;
+}
+
+.footer a:hover {
+  color: var(--main-color);
+}
+
+.footer small {
+  color: #888;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .navbar-nav .nav-link {
+    padding: 10px 12px !important;
+  }
+
+  .product-card img {
+    height: 220px;
+  }
+
+  #heroCarousel img {
+    height: 280px;
+  }
+
+  section h3 {
+    font-size: 18px;
+  }
+}
+
+/* === ANIMATION === */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.product-card {
+  animation: fadeInUp 0.6s ease;
+}
