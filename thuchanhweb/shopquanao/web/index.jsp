@@ -56,7 +56,7 @@ request.setAttribute("products", products);
   </style>
 </head>
 <body>
-
+    
 <!-- Thông báo lỗi DB (nếu có) -->
 <c:if test="${not empty dbError}">
   <div class="container mt-3">
@@ -96,19 +96,19 @@ request.setAttribute("products", products);
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="menMenu" role="button" data-bs-toggle="dropdown">ÁO THU ĐÔNG</a>
           <ul class="dropdown-menu" aria-labelledby="menMenu">
-            <li><a class="dropdown-item" href="#">Áo Nỉ / Áo Thun Dài Tay</a></li>
-            <li><a class="dropdown-item" href="#">Áo Len</a></li>
-            <li><a class="dropdown-item" href="#">Áo Khoác</a></li>
+            <li><a class="dropdown-item" href="ao_ni_ao_thu_dong.jsp">Áo Nỉ / Áo Thun Dài Tay</a></li>
+            <li><a class="dropdown-item" href="ao_len.jsp">Áo Len</a></li>
+            <li><a class="dropdown-item" href="ao_khoac.jsp">Áo Khoác</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Áo Jacket</a></li>
+            <li><a class="dropdown-item" href="Cadigan.jsp">Cardigan</a></li>
           </ul>
         </li>
 
-        <li class="nav-item"><a class="nav-link" href="#">ÁO XUÂN HÈ</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">QUẦN</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">PHỤ KIỆN</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Hệ thống cửa hàng</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Thông Tin</a></li>
+        <li class="nav-item"><a class="nav-link" href="aoxuanhe.jsp">ÁO XUÂN HÈ</a></li>
+        <li class="nav-item"><a class="nav-link" href="quan.jsp">QUẦN</a></li>
+        <li class="nav-item"><a class="nav-link" href="phukien.jsp">PHỤ KIỆN</a></li>
+        <li class="nav-item"><a class="nav-link" href="hethongCH.jsp">Hệ thống cửa hàng</a></li>
+        <li class="nav-item"><a class="nav-link" href="thongtin.jsp">Thông Tin</a></li>
       </ul>
 
       <form class="d-flex" role="search" action="search">
