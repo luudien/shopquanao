@@ -1,19 +1,20 @@
 /* ===========================================
-   STYLE.CSS - Atino Clone (Pro Version)
-   Author: ChatGPT
+   STYLE.CSS - Bản Clone Atino (Phiên bản Việt hóa)
+   Tác giả: ChatGPT
    =========================================== */
 
-/* Import font đẹp */
+/* === Nhúng font chữ đẹp từ Google === */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
+/* === Biến màu sắc chính dùng toàn trang === */
 :root {
-  --main-color: #c01920;
-  --dark-color: #111;
-  --gray-color: #555;
-  --light-gray: #f8f8f8;
+  --main-color: #c01920;      /* Màu chủ đạo (đỏ Atino) */
+  --dark-color: #111;         /* Màu chữ đậm */
+  --gray-color: #555;         /* Màu chữ phụ */
+  --light-gray: #f8f8f8;      /* Màu nền sáng */
 }
 
-/* === RESET & BASE === */
+/* === Thiết lập cơ bản cho toàn trang === */
 body {
   font-family: 'Poppins', sans-serif;
   color: var(--dark-color);
@@ -38,7 +39,7 @@ img {
   display: block;
 }
 
-/* === HEADER / TOPBAR === */
+/* === THANH TRÊN CÙNG (TOPBAR) === */
 .topbar {
   background: #fff;
   border-bottom: 1px solid #eee;
@@ -56,7 +57,7 @@ img {
   font-size: 16px;
 }
 
-/* === NAVBAR === */
+/* === THANH MENU (NAVBAR) === */
 .category-menu {
   background: #fff;
   border-bottom: 1px solid #eee;
@@ -76,7 +77,26 @@ img {
   color: var(--main-color) !important;
 }
 
-/* === HERO SLIDER === */
+/* === SLIDER TRANG CHỦ (FULL ẢNH) === */
+.hero-slider {
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+.hero-slider .carousel-inner {
+  width: 100%;
+}
+
+.hero-img {
+  width: 100%;
+  height: 80vh;                /* Chiều cao: 80% chiều cao màn hình (có thể đổi 100vh để full) */
+  object-fit: cover;           /* Ảnh vừa khung, không méo */
+  object-position: center;     /* Canh giữa ảnh */
+  display: block;
+  border-radius: 0;
+}
+
 #heroCarousel img {
   border-radius: 10px;
   object-fit: cover;
@@ -84,7 +104,7 @@ img {
   box-shadow: 0 4px 14px rgba(0,0,0,0.1);
 }
 
-/* === SECTION TITLES === */
+/* === TIÊU ĐỀ CÁC PHẦN (SECTION TITLE) === */
 section h3 {
   font-weight: 600;
   font-size: 22px;
@@ -101,7 +121,7 @@ section h3::after {
   margin-top: 6px;
 }
 
-/* === PRODUCT CARD === */
+/* === THẺ SẢN PHẨM (PRODUCT CARD) === */
 .product-card {
   border: 1px solid #eee;
   border-radius: 10px;
@@ -126,7 +146,7 @@ section h3::after {
   transform: scale(1.05);
 }
 
-/* Hover overlay */
+/* Nút "Xem nhanh" hiển thị khi hover */
 .product-card .quick-view {
   position: absolute;
   top: 45%;
@@ -164,7 +184,7 @@ section h3::after {
   margin-bottom: 10px;
 }
 
-/* === BUTTONS === */
+/* === NÚT BẤM (BUTTONS) === */
 .btn-primary {
   background: var(--main-color);
   border: none;
@@ -185,7 +205,7 @@ section h3::after {
   color: #fff;
 }
 
-/* === FOOTER === */
+/* === CHÂN TRANG (FOOTER) === */
 .footer {
   background: var(--light-gray);
   border-top: 1px solid #eee;
@@ -213,7 +233,7 @@ section h3::after {
   color: #888;
 }
 
-/* === RESPONSIVE === */
+/* === RESPONSIVE (Tự co giãn khi xem trên điện thoại) === */
 @media (max-width: 768px) {
   .navbar-nav .nav-link {
     padding: 10px 12px !important;
@@ -223,7 +243,8 @@ section h3::after {
     height: 220px;
   }
 
-  #heroCarousel img {
+  #heroCarousel img,
+  .hero-img {
     height: 280px;
   }
 
@@ -232,7 +253,7 @@ section h3::after {
   }
 }
 
-/* === ANIMATION === */
+/* === HIỆU ỨNG ANIMATION === */
 @keyframes fadeInUp {
   from {
     opacity: 0;
