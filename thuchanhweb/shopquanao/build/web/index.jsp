@@ -3,33 +3,38 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%
-/* ====== KẾT NỐI DB & LẤY DỮ LIỆU PRODUCTS ====== */
+/* ====== KẾT NỐI DATABASE & LẤY DỮ LIỆU TỪ BẢNG products ====== */
+
+// Thông tin kết nối MySQL (sửa theo database của bạn)
 String jdbcUrl  = "jdbc:mysql://localhost:3306/myappdb?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
-String jdbcUser = "root";       // hoặc "myappuser"
-String jdbcPass = "";           // hoặc "mypassword" nếu bạn đã đặt
+String jdbcUser = "root";       // tên tài khoản MySQL
+String jdbcPass = "";           // mật khẩu MySQL (nếu có thì điền vào đây)
 
 List<Map<String,Object>> products = new ArrayList<>();
 
 try {
-    Class.forName("com.mysql.cj.jdbc.Driver");   // cần mysql-connector-j
+    // Nạp driver MySQL (yêu cầu có thư viện mysql-connector-j)
+    Class.forName("com.mysql.cj.jdbc.Driver");   
+
+    // Mở kết nối, chạy truy vấn SQL
     try (Connection cn = DriverManager.getConnection(jdbcUrl, jdbcUser, jdbcPass);
          Statement st = cn.createStatement()) {
 
-        // BẢNG products: id INT PK, name VARCHAR, price DECIMAL/INT, image_url VARCHAR
+        // Lấy dữ liệu từ bảng products: id, name, price, image_url
         String sql = "SELECT id, name, price, image_url FROM products ORDER BY id DESC";
         try (ResultSet rs = st.executeQuery(sql)) {
             while (rs.next()) {
                 Map<String,Object> p = new HashMap<>();
                 p.put("id",        rs.getInt("id"));
                 p.put("name",      rs.getString("name"));
-                p.put("price",     rs.getBigDecimal("price"));   // hoặc getInt nếu bạn dùng INT
+                p.put("price",     rs.getBigDecimal("price"));  
                 p.put("imageUrl",  rs.getString("image_url"));
                 products.add(p);
             }
         }
     }
 } catch (Exception e) {
-    // Nếu lỗi (chưa có bảng products, sai driver, v.v.) thì để rỗng để phần demo bên dưới hiển thị
+    // Nếu lỗi (chưa có bảng, sai driver, sai kết nối, v.v.)
     request.setAttribute("dbError", e.getMessage());
 }
 request.setAttribute("products", products);
@@ -43,8 +48,10 @@ request.setAttribute("products", products);
   <title>Atino - Demo (index.jsp)</title>
   <link rel="stylesheet" href="css/home.css">
 
-  <!-- Bootstrap 5 CSS -->
+  <!-- DÙNG BOOTSTRAP CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- CSS TỰ VIẾT THÊM -->
   <style>
     .topbar { background:#fff; border-bottom:1px solid #eee; }
     .contact-phone { font-weight:700; color:#222; }
@@ -57,7 +64,7 @@ request.setAttribute("products", products);
 </head>
 <body>
 
-<!-- Thông báo lỗi DB (nếu có) -->
+<!-- HIỂN THỊ LỖI DATABASE (NẾU CÓ) -->
 <c:if test="${not empty dbError}">
   <div class="container mt-3">
     <div class="alert alert-warning">
@@ -66,12 +73,13 @@ request.setAttribute("products", products);
   </div>
 </c:if>
 
-<!-- TOP BAR -->
+<!-- THANH TRÊN CÙNG (HEADER / TOP BAR) -->
 <header class="topbar py-2">
   <div class="container d-flex justify-content-between align-items-center">
     <div class="d-flex align-items-center gap-3">
-      <img src="assets/logo.png" alt="Atino" class="brand-logo">
-      <span class="text-muted">Always Be Casual</span>
+      <!-- LOGO WEBSITE -->
+      <img src="assets/logo.jpg" alt="Atino" class="brand-logo">
+      <span class="text-muted">Phong Cách Thời Trang Việt</span>
     </div>
 
     <div class="d-flex align-items-center gap-3">
@@ -82,7 +90,7 @@ request.setAttribute("products", products);
   </div>
 </header>
 
-<!-- NAV / CATEGORIES -->
+<!-- THANH MENU DANH MỤC (NAVIGATION) -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white category-menu shadow-sm">
   <div class="container">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
@@ -93,6 +101,7 @@ request.setAttribute("products", products);
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-categories">
         <li class="nav-item"><a class="nav-link active" href="#">Trang chủ</a></li>
 
+        <!-- MENU DROPDOWN -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="menMenu" role="button" data-bs-toggle="dropdown">ÁO THU ĐÔNG</a>
           <ul class="dropdown-menu" aria-labelledby="menMenu">
@@ -104,6 +113,7 @@ request.setAttribute("products", products);
           </ul>
         </li>
 
+        <!-- CÁC DANH MỤC KHÁC -->
         <li class="nav-item"><a class="nav-link" href="#">ÁO XUÂN HÈ</a></li>
         <li class="nav-item"><a class="nav-link" href="#">QUẦN</a></li>
         <li class="nav-item"><a class="nav-link" href="#">PHỤ KIỆN</a></li>
@@ -111,6 +121,7 @@ request.setAttribute("products", products);
         <li class="nav-item"><a class="nav-link" href="#">Thông Tin</a></li>
       </ul>
 
+      <!-- Ô TÌM KIẾM -->
       <form class="d-flex" role="search" action="search">
         <input class="form-control me-2" type="search" placeholder="Tìm kiếm sản phẩm..." name="q">
         <button class="btn btn-outline-primary" type="submit">Tìm</button>
@@ -119,18 +130,22 @@ request.setAttribute("products", products);
   </div>
 </nav>
 
-<!-- SLIDER / HERO -->
+<!-- PHẦN SLIDER / HÌNH ẢNH TRANG CHỦ -->
 <section class="py-3">
   <div class="container">
     <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
+        <!-- SLIDE 1 -->
         <div class="carousel-item active">
           <img src="assets/slide1.jpg" class="d-block w-100" alt="Slide 1" style="height:360px; object-fit:cover;">
         </div>
+        <!-- SLIDE 2 -->
         <div class="carousel-item">
           <img src="assets/slide2.jpg" class="d-block w-100" alt="Slide 2" style="height:360px; object-fit:cover;">
         </div>
       </div>
+
+      <!-- NÚT CHUYỂN SLIDE -->
       <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon"></span>
       </button>
@@ -141,7 +156,7 @@ request.setAttribute("products", products);
   </div>
 </section>
 
-<!-- SẢN PHẨM MỚI - GRID -->
+<!-- DANH SÁCH SẢN PHẨM -->
 <section class="py-4">
   <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-3">
@@ -150,7 +165,7 @@ request.setAttribute("products", products);
     </div>
 
     <div class="row g-3">
-      <!-- Hiển thị từ DB nếu có -->
+      <!-- Lặp danh sách sản phẩm từ database -->
       <c:forEach var="p" items="${products}">
         <div class="col-6 col-md-3">
           <div class="card product-card h-100">
@@ -172,7 +187,7 @@ request.setAttribute("products", products);
         </div>
       </c:forEach>
 
-      <!-- Nếu chưa có DB / lỗi → hiển thị demo -->
+      <!-- Nếu chưa có DB → hiển thị sản phẩm demo -->
       <c:if test="${empty products}">
         <div class="col-6 col-md-3">
           <div class="card product-card">
@@ -189,16 +204,19 @@ request.setAttribute("products", products);
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- CHÂN TRANG (FOOTER) -->
 <footer class="footer">
   <div class="container">
     <div class="row">
+      <!-- CỘT 1: Thông tin -->
       <div class="col-md-4 mb-3">
         <h6>Về chúng tôi</h6>
         <p>HỘ KINH DOANH ATINO<br>
         Địa chỉ: Số 110 Phố Nhổn, Phường Tây Tựu, Bắc Từ Liêm, Hà Nội<br>
         Email: cntt@atino.vn</p>
       </div>
+
+      <!-- CỘT 2: Hỗ trợ -->
       <div class="col-md-4 mb-3">
         <h6>Gọi mua hàng</h6>
         <p class="mb-1">096728.4444 (8:30 - 22:20)</p>
@@ -209,6 +227,8 @@ request.setAttribute("products", products);
           <li><a href="#">Quy định đổi trả</a></li>
         </ul>
       </div>
+
+      <!-- CỘT 3: Mạng xã hội -->
       <div class="col-md-4 mb-3">
         <h6>Theo dõi chúng tôi</h6>
         <p>
@@ -218,13 +238,14 @@ request.setAttribute("products", products);
         </p>
       </div>
     </div>
+
     <div class="text-center mt-3">
       <small>Thiết kế website bởi NHANH.VN - Demo mô phỏng</small>
     </div>
   </div>
 </footer>
 
-<!-- Bootstrap JS -->
+<!-- SCRIPT JS BOOTSTRAP -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
