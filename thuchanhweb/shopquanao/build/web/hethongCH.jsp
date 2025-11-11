@@ -17,18 +17,17 @@
     .nav-link {color:#111;opacity:.85;}
     .nav-link:hover {opacity:1;}
     .search-input {border-radius:999px;padding-left:1rem;}
-
     .store-list {max-height:650px;overflow-y:auto;background:#fff;border-radius:10px;border:1px solid #e5e5e5;padding:1rem;}
     .store-item {margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px dashed #ddd;}
     .store-item:last-child {border-bottom:none;}
-
     .map-container {background:#eee;height:650px;border-radius:10px;overflow:hidden;}
-
     .footer {background:#fff;border-top:1px solid #eee;}
   </style>
 </head>
 <body>
-    <jsp:include page="includes/header.jsp"/>
+
+  <jsp:include page="includes/header.jsp"/>
+
   <!-- ===== Thanh trên cùng ===== -->
   <div class="topbar py-2">
     <div class="container d-flex justify-content-between align-items-center">
@@ -39,28 +38,6 @@
       </div>
     </div>
   </div>
-
-  <!-- ===== Header / Navigation ===== -->
-<!--  <header class="atino-header">
-    <div class="container py-3 d-flex align-items-center justify-content-between gap-3 flex-wrap">
-      <div class="logo">Atino</div>
-
-      <nav class="d-flex gap-4 flex-wrap">
-        <a href="index.jsp"              class="">TRANG CHỦ</a>
-        <a href="ao_ni_ao_thu_dong.jsp"  class="active">ÁO THU ĐÔNG</a>
-        <a href="aoxuanhe.jsp"           class="">ÁO XUÂN HÈ</a>
-        <a href="quan.jsp"               class="">QUẦN</a>
-        <a href="phukien.jsp"            class="">PHỤ KIỆN</a>
-        <a href="hethongCH.jsp"          class="">HỆ THỐNG CỬA HÀNG</a>
-        <a href="thongtin.jsp"           class="">THÔNG TIN</a>
-      </nav>
-
-      <form class="d-flex" action="list" method="get" role="search">
-        <input name="q" type="search" class="form-control search-input me-2" placeholder="Tìm kiếm sản phẩm..." value="${param.q}" />
-        <button class="btn btn-outline-primary rounded-pill fw-semibold" type="submit">Tìm</button>
-      </form>
-    </div>
-  </header>-->
 
   <!-- ===== Tiêu đề trang ===== -->
   <div class="container py-4">
@@ -117,6 +94,10 @@
               <strong>ATINO: 116 Cầu Giấy, Quan Hoa, Hà Nội</strong>
               <div>Số điện thoại: <span class="fw-semibold">0967284444</span></div>
             </div>
+            <div class="store-item">
+              <strong>ATINO: 218 Lĩnh Nam, Hoàng Mai, Hà Nội</strong>
+              <div>Số điện thoại: <span class="fw-semibold">0967284444</span></div>
+            </div>
           </c:if>
         </div>
       </div>
@@ -124,14 +105,22 @@
       <!-- Cột bên phải: Bản đồ -->
       <div class="col-12 col-lg-8">
         <div class="map-container" id="map">
-          <!-- Có thể nhúng iframe map hoặc JS map API -->
-          <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1hYhCsoQeEZ_JgOZn1phx-K6CG3i2jU4&ehbc=2E312F" width="100%" height="100%" style="border:0; border-radius:10px;"></iframe>
+          <!-- Google Maps hiển thị địa chỉ mới -->
+          <iframe
+            src="https://www.google.com/maps?q=218%20Lĩnh%20Nam,%20Hoàng%20Mai,%20Hà%20Nội&output=embed"
+            width="100%"
+            height="100%"
+            style="border:0; border-radius:10px;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ===== Banner hình ảnh (tuỳ chọn) ===== -->
+  <!-- ===== Banner hình ảnh ===== -->
   <div class="container mb-4">
     <img src="https://images.unsplash.com/photo-1607083206967-7c59c50f4b90?q=80&w=1600&auto=format&fit=crop" class="w-100 rounded-3" alt="Cửa hàng Atino" />
   </div>
@@ -170,6 +159,7 @@
             <li>208 Bạch Mai</li>
             <li>175 Chùa Bộc</li>
             <li>116 Cầu Giấy</li>
+            <li>218 Lĩnh Nam</li>
             <li>225 Võ Văn Ngân (TP.HCM)</li>
             <li>567 Quang Trung (Gò Vấp)</li>
             <li>... (bind thêm từ server)</li>

@@ -45,7 +45,7 @@ request.setAttribute("products", products);
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Atino - Demo (index.jsp)</title>
+  <title>ATINO- Thời Trang Việt </title>
   <link rel="stylesheet" href="css/home.css">
 
   <!-- DÙNG BOOTSTRAP CSS -->
@@ -63,13 +63,13 @@ request.setAttribute("products", products);
   </style>
 </head>
 <body>
-<<<<<<< HEAD
+
     
 <!-- Thông báo lỗi DB (nếu có) -->
-=======
+
 
 <!-- HIỂN THỊ LỖI DATABASE (NẾU CÓ) -->
->>>>>>> 630eb45363a5bcdc6a8c208ad3aad2dd7dbc9191
+
 <c:if test="${not empty dbError}">
   <div class="container mt-3">
     <div class="alert alert-warning">
@@ -118,20 +118,20 @@ request.setAttribute("products", products);
           </ul>
         </li>
 
-<<<<<<< HEAD
+
         <li class="nav-item"><a class="nav-link" href="aoxuanhe.jsp">ÁO XUÂN HÈ</a></li>
         <li class="nav-item"><a class="nav-link" href="quan.jsp">QUẦN</a></li>
         <li class="nav-item"><a class="nav-link" href="phukien.jsp">PHỤ KIỆN</a></li>
         <li class="nav-item"><a class="nav-link" href="hethongCH.jsp">Hệ thống cửa hàng</a></li>
         <li class="nav-item"><a class="nav-link" href="thongtin.jsp">Thông Tin</a></li>
-=======
+
         <!-- CÁC DANH MỤC KHÁC -->
         <li class="nav-item"><a class="nav-link" href="#">ÁO XUÂN HÈ</a></li>
         <li class="nav-item"><a class="nav-link" href="#">QUẦN</a></li>
         <li class="nav-item"><a class="nav-link" href="#">PHỤ KIỆN</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Hệ thống cửa hàng</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Thông Tin</a></li>
->>>>>>> 630eb45363a5bcdc6a8c208ad3aad2dd7dbc9191
+
       </ul>
 
       <!-- Ô TÌM KIẾM -->
